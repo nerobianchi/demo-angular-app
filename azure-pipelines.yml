@@ -23,5 +23,6 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'DockerHubConnection'
+        repository: 'demo-angular-app'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
