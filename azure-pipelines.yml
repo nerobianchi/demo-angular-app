@@ -12,8 +12,16 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'DockerHubConnection'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DockerHubConnection'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
